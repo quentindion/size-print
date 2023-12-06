@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    html {
+        @apply font-sans bg-neutral-100 text-neutral-800;
+    }
+
+    body {
+        @apply w-screen h-screen p-4 print:p-0;
+    }
+
+    #root {
+        @apply w-full h-full;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield; /* Firefox */
+    }
+}
+
+@layer components {
+
+    button:not(.switch), input[type=file] + label {
+        @apply inline-flex items-center gap-2 px-4 py-2 font-semibold text-sm cursor-pointer rounded-xl transition-all
+                text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-600;
+    }
+
+    .switch {
+        @apply relative inline-flex h-6 w-12 items-center rounded-full bg-gradient-to-br from-blue-700 to-blue-500;
+
+        .switch-toggle {
+            @apply inline-block h-4 w-4 transform rounded-full bg-white transition-all translate-x-1;
+        }
+
+        .switch-toggled {
+            @apply translate-x-7;
+        }
+
+        &:active {
+            .switch-toggle { @apply w-6; }
+            .switch-toggled { @apply -ml-2; }
+        }
+    }
+
+    label.title {
+        @apply block font-semibold text-lg mb-2;
+    }
+
+    .formfield {
+        @apply relative flex items-center p-0.5 rounded-xl outline outline-2 outline-blue-500 bg-white transition-all
+            focus-within:outline-blue-700;
+
+        > input { @apply h-8 w-full pl-2 bg-transparent focus:outline-0; }
+        > .suffix { @apply font-semibold text-sm text-blue-700 px-2; }
+    }
+}
