@@ -31,8 +31,8 @@ function App() {
     });
 
     const [picture, setPicture] = useState<Picture>({
-        width: '20',
-        limit: '24',
+        width: '100',
+        limit: '20',
         dragging: false
     });
 
